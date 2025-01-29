@@ -1,0 +1,9 @@
+from machine import Pin, ADC
+import utime
+
+prvni = ADC(Pin(26))
+
+while True:
+    jedna = prvni.read_u16()
+    print(jedna)
+    utime.sleep_ms(10)    

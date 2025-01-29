@@ -1,0 +1,29 @@
+from machine import Pin
+import utime
+
+trig = Pin(21, Pin.OUT)
+echo = Pin(20, Pin.IN)
+
+def ultra():
+    trig.low()
+    utime.sleep_us(2)
+    trig.high()
+    utime.sleep_us(5)
+    trig.low()
+    while echo.value() == 0:
+        soff = utime.ticks_us()
+    while echo.value() == 1:
+        son = utime.ticks_us()
+
+    timepass = son - soff
+    dis = (timepass * 0.0343) / 2
+    dis = "{:.1f}".format(dis)  
+      
+    print(dis+ " cm")
+
+while True:
+    ultra()
+    utime.sleep_us(10000)
+    
+
+
